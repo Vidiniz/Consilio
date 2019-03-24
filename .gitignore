@@ -11,3 +11,4 @@
 /Services/ConsilioServices/ConsilioServices.ServiceApp/obj
 /Services/ConsilioServices/ConsilioServices.Tests/obj
 /Application/node_modules
+/Services/ConsilioServices/ConsilioServices.Infrastructure.Data/bin/Debug/netcoreapp2.1
