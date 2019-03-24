@@ -10,3 +10,4 @@
 /Services/ConsilioServices/ConsilioServices.Infrastructure.Data/obj
 /Services/ConsilioServices/ConsilioServices.ServiceApp/obj
 /Services/ConsilioServices/ConsilioServices.Tests/obj
+/Application/node_modules
