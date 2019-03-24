@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs
+/Services/ConsilioServices/.vs/ConsilioServices/v15
+/Services/ConsilioServices/ConsilioServices.Application/obj
+/Services/ConsilioServices/ConsilioServices.Domain/obj
+/Services/ConsilioServices/ConsilioServices.Infrastructure.CrossCutting/obj
+/Services/ConsilioServices/ConsilioServices.Infrastructure.Data/obj
+/Services/ConsilioServices/ConsilioServices.ServiceApp/obj
+/Services/ConsilioServices/ConsilioServices.Tests/obj
