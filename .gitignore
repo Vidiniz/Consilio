@@ -12,3 +12,8 @@
 /Services/ConsilioServices/ConsilioServices.Tests/obj
 /Application/node_modules
 /Services/ConsilioServices/ConsilioServices.Infrastructure.Data/bin/Debug/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Application/bin/Debug/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Domain/bin/Debug/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Infrastructure.CrossCutting/bin/Debug/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.ServiceApp/bin/Debug/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Tests/bin/Debug/netcoreapp2.1
