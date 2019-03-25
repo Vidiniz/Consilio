@@ -8,7 +8,6 @@
     <ProjectReference Include="..\ConsilioServices.Application\ConsilioServices.Application.csproj" />
     <ProjectReference Include="..\ConsilioServices.Domain\ConsilioServices.Domain.csproj" />
     <ProjectReference Include="..\ConsilioServices.Infrastructure.Data\ConsilioServices.Infrastructure.Data.csproj" />
-    <ProjectReference Include="..\ConsilioServices.ServiceApp\ConsilioServices.ServiceApp.csproj" />
   </ItemGroup>
 
 </Project>
