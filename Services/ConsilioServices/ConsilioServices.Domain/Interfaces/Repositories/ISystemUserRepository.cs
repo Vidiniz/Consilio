@@ -7,8 +7,8 @@ namespace ConsilioServices.Domain.Interfaces.Repositories
     {
         IEnumerable<SystemUser> GetByName(string name);
 
-        IEnumerable<SystemUser> GetByName(string name, int pageNumber, int recordNumbers);
+        IEnumerable<SystemUser> GetByEmail(string email);
 
-        IEnumerable<SystemUser> GetAll(int pageNumber, int recordNumbers);
+        SystemUser GetExactEmail(string email);
     }
 }

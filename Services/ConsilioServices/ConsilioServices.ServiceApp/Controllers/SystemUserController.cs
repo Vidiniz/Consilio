@@ -1,6 +1,6 @@
 ﻿using System;
 using ConsilioServices.Application.Interfaces;
-using ConsilioServices.Application.ViewModel;
+using ConsilioServices.Application.ViewModel.SystemTools;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsilioServices.ServiceApp.Controllers
@@ -17,11 +17,11 @@ namespace ConsilioServices.ServiceApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int pageNumber = 1, int recordNumbers = 10)
         {
             try
             {
-                return Ok(_systemUserAppService.GetAll());
+                return Ok(_systemUserAppService.GetAll(pageNumber, recordNumbers));
             }
             catch(Exception ex)
             {
@@ -48,14 +48,14 @@ namespace ConsilioServices.ServiceApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetByName(string name)
+        public IActionResult GetByName(string name, int pageNumber = 1, int recordNumbers = 10)
         {
             try
             {
                 if (string.IsNullOrEmpty(name))
                     return BadRequest(new { Error = "Parametro é obrigatório" });
 
-                var result = _systemUserAppService.GetByName(name);
+                var result = _systemUserAppService.GetByName(name, pageNumber, recordNumbers);
 
                 if (result == null)
                     return NotFound();

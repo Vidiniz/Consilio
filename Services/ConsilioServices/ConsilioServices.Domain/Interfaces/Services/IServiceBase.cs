@@ -8,7 +8,7 @@ namespace ConsilioServices.Domain.Interfaces.Services
 
         TEntity GetById(int id);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(int numberRegisters, int maxRegisters);
 
         void Update(TEntity obj);
 

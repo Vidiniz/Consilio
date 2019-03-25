@@ -27,9 +27,17 @@ namespace ConsilioServices.Infrastructure.Data.Repository
             _dataBase.Dispose();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll(int pageNumber, int recordNumbers)
         {
-            return _dataBase.Set<TEntity>().ToList();
+            var result = _dataBase.Set<TEntity>();
+
+            var totalRegisters = result.Count();
+            var count = (int)Math.Ceiling((decimal)totalRegisters / recordNumbers);
+            var skip = (pageNumber - 1) * recordNumbers;
+
+            result.Skip(skip).Take(recordNumbers).ToList();
+
+            return result;
         }
 
         public TEntity GetById(int id)

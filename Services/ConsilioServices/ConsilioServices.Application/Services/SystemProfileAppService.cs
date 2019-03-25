@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ConsilioServices.Application.Interfaces;
-using ConsilioServices.Application.ViewModel;
+using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Entities;
 using ConsilioServices.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
@@ -20,9 +20,9 @@ namespace ConsilioServices.Application.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<SystemProfileViewModel> GetAll(int pageNumber = 1, int recordNumbers = 10)
+        public IEnumerable<SystemProfileTableViewModel> GetAll(int pageNumber, int recordNumbers)
         {
-            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileViewModel>>(_systemProfileRepository.GetAll(pageNumber, recordNumbers));
+            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileTableViewModel>>(_systemProfileRepository.GetAll(pageNumber, recordNumbers));
         }
 
         public SystemProfileViewModel GetById(int id)
@@ -30,9 +30,9 @@ namespace ConsilioServices.Application.Services
             return _mapper.Map<SystemProfile, SystemProfileViewModel>(_systemProfileRepository.GetById(id));
         }
 
-        public IEnumerable<SystemProfileViewModel> GetByName(string name, int pageNumber = 1, int recordNumbers = 10)
+        public IEnumerable<SystemProfileTableViewModel> GetByName(string name, int pageNumber, int recordNumbers)
         {
-            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileViewModel>>(_systemProfileRepository.GetByName(name, pageNumber, recordNumbers));
+            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileTableViewModel>>(_systemProfileRepository.GetByName(name));
         }
 
         public void Remove(int id)

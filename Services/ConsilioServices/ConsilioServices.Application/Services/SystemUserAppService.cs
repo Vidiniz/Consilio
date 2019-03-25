@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using ConsilioServices.Application.Interfaces;
-using ConsilioServices.Application.ViewModel;
+using ConsilioServices.Application.ViewModel.SystemTools;
+using ConsilioServices.Domain.Entities;
 using ConsilioServices.Domain.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
+using X.PagedList;
 
 namespace ConsilioServices.Application.Services
 {
@@ -25,19 +27,19 @@ namespace ConsilioServices.Application.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<SystemUserViewModel> GetAll(int pageNumber = 1, int recordNumbers = 10)
-        {
-            return _mapper.Map<IEnumerable<Domain.Entities.SystemUser>, IEnumerable<SystemUserViewModel>>(_systemUserRepository.GetAll(pageNumber, recordNumbers));
+        public IEnumerable<SystemUserTableViewModel> GetAll(int pageNumber, int recordNumbers)
+        { 
+            return _mapper.Map<IEnumerable<SystemUser>, IEnumerable<SystemUserTableViewModel>>(_systemUserRepository.GetAll(pageNumber, recordNumbers));
         }
 
         public SystemUserViewModel GetById(int id)
         {
-            return _mapper.Map<Domain.Entities.SystemUser, SystemUserViewModel>(_systemUserRepository.GetById(id));
+            return _mapper.Map<SystemUser, SystemUserViewModel>(_systemUserRepository.GetById(id));
         }
 
-        public IEnumerable<SystemUserViewModel> GetByName(string name, int pageNumber = 1, int recordNumbers = 10)
+        public IEnumerable<SystemUserTableViewModel> GetByName(string name, int pageNumber, int recordNumbers)
         {
-            return _mapper.Map<IEnumerable<Domain.Entities.SystemUser>, IEnumerable<SystemUserViewModel>>(_systemUserRepository.GetByName(name, pageNumber, recordNumbers));
+            return _mapper.Map<IEnumerable<SystemUser>, IEnumerable<SystemUserTableViewModel>>(_systemUserRepository.GetByName(name).ToPagedList(pageNumber, recordNumbers));
         }
 
         public void Remove(int id)
@@ -48,12 +50,12 @@ namespace ConsilioServices.Application.Services
 
         public void Save(SystemUserViewModel systemUserViewModel)
         {
-            _systemUserRepository.Add(_mapper.Map<SystemUserViewModel, Domain.Entities.SystemUser>(systemUserViewModel));
+            _systemUserRepository.Add(_mapper.Map<SystemUserViewModel, SystemUser>(systemUserViewModel));
         }
 
         public void Update(SystemUserViewModel systemUserViewModel)
         {
-            _systemUserRepository.Update(_mapper.Map<SystemUserViewModel, Domain.Entities.SystemUser>(systemUserViewModel));
+            _systemUserRepository.Update(_mapper.Map<SystemUserViewModel, SystemUser>(systemUserViewModel));
         }
     }
 }

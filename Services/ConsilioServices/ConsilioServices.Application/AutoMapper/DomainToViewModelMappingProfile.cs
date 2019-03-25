@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ConsilioServices.Application.ViewModel;
+using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Entities;
 
 namespace ConsilioServices.Application.AutoMapper
@@ -9,7 +9,9 @@ namespace ConsilioServices.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<SystemUser, SystemUserViewModel>();
+            CreateMap<SystemUser, SystemUserTableViewModel>();
             CreateMap<SystemProfile, SystemProfileViewModel>();
+            CreateMap<SystemProfile, SystemProfileTableViewModel>();
         }
     }
 }

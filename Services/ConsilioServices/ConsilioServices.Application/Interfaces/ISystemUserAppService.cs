@@ -1,4 +1,4 @@
-﻿using ConsilioServices.Application.ViewModel;
+﻿using ConsilioServices.Application.ViewModel.SystemTools;
 using System.Collections.Generic;
 
 namespace ConsilioServices.Application.Interfaces
@@ -7,9 +7,9 @@ namespace ConsilioServices.Application.Interfaces
     {
         void Save(SystemUserViewModel systemUserViewModel);
 
-        IEnumerable<SystemUserViewModel> GetAll(int pageNumber = 1, int recordNumbers = 10);
+        IEnumerable<SystemUserTableViewModel> GetAll(int pageNumber, int recordNumbers);
 
-        IEnumerable<SystemUserViewModel> GetByName(string name, int pageNumber = 1, int recordNumbers = 10);
+        IEnumerable<SystemUserTableViewModel> GetByName(string name, int pageNumber, int recordNumbers);
 
         SystemUserViewModel GetById(int id);
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ConsilioServices.Application.ViewModel
+namespace ConsilioServices.Application.ViewModel.SystemTools
 {
     public class SystemProfileViewModel
     {

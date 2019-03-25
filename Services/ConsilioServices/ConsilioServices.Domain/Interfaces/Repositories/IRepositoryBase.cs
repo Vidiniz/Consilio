@@ -10,7 +10,7 @@ namespace ConsilioServices.Domain.Interfaces.Repositories
 
         TEntity GetById(int id);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(int pageNumber, int recordNumbers);
 
         void Update(TEntity obj);
 

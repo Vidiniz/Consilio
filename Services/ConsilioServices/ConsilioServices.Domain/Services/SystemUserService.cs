@@ -14,14 +14,19 @@ namespace ConsilioServices.Domain.Services
             _systemUserRepository = systemUserRepository;
         }
 
-        public IEnumerable<SystemUser> GetAll(int pageNumber, int recordNumbers)
+        public IEnumerable<SystemUser> GetByEmail(string email)
         {
-            return _systemUserRepository.GetAll(pageNumber, recordNumbers);
+            return _systemUserRepository.GetByEmail(email);
         }
 
-        public IEnumerable<SystemUser> GetByName(string name, int pageNumber, int recordNumbers)
+        public IEnumerable<SystemUser> GetByName(string name)
         {
-            return _systemUserRepository.GetByName(name, pageNumber, recordNumbers);
+            return _systemUserRepository.GetByName(name);
+        }
+
+        public SystemUser GetExactEmail(string email)
+        {
+            return _systemUserRepository.GetExactEmail(email);
         }
     }
 }
