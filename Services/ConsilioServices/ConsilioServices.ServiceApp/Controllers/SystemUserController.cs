@@ -112,7 +112,6 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

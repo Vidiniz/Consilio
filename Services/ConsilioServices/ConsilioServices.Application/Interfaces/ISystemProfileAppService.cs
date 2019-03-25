@@ -7,14 +7,14 @@ namespace ConsilioServices.Application.Interfaces
     {
         void Save(SystemProfileViewModel systemProfileViewModel);
 
-        IEnumerable<SystemProfileViewModel> GetAll();
+        IEnumerable<SystemProfileViewModel> GetAll(int pageNumber = 1, int recordNumbers = 10);
+
+        IEnumerable<SystemProfileViewModel> GetByName(string name, int pageNumber = 1, int recordNumbers = 10);
 
         SystemProfileViewModel GetById(int id);
 
         void Update(SystemProfileViewModel systemProfileViewModel);
 
         void Remove(int id);
-
-        IEnumerable<SystemProfileViewModel> GetByName(string name);
     }
 }

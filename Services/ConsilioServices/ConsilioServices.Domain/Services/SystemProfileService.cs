@@ -14,9 +14,14 @@ namespace ConsilioServices.Domain.Services
             this._systemProfileRepository = systemProfileRepository;
         }
 
-        public IEnumerable<SystemProfile> GetByName(string name)
+        public IEnumerable<SystemProfile> GetAll(int pageNumber, int recordNumbers)
         {
-            return _systemProfileRepository.GetByName(name);
+            return _systemProfileRepository.GetAll(pageNumber, recordNumbers);
+        }
+
+        public IEnumerable<SystemProfile> GetByName(string name, int pageNumber, int recordNumbers)
+        {
+            return _systemProfileRepository.GetByName(name, pageNumber, recordNumbers);
         }
     }
 }

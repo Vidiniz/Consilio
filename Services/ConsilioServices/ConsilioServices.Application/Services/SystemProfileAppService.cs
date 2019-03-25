@@ -20,9 +20,9 @@ namespace ConsilioServices.Application.Services
             _mapper = mapper;
         }
 
-        public IEnumerable<SystemProfileViewModel> GetAll()
+        public IEnumerable<SystemProfileViewModel> GetAll(int pageNumber = 1, int recordNumbers = 10)
         {
-            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileViewModel>>(_systemProfileRepository.GetAll());
+            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileViewModel>>(_systemProfileRepository.GetAll(pageNumber, recordNumbers));
         }
 
         public SystemProfileViewModel GetById(int id)
@@ -30,9 +30,9 @@ namespace ConsilioServices.Application.Services
             return _mapper.Map<SystemProfile, SystemProfileViewModel>(_systemProfileRepository.GetById(id));
         }
 
-        public IEnumerable<SystemProfileViewModel> GetByName(string name)
+        public IEnumerable<SystemProfileViewModel> GetByName(string name, int pageNumber = 1, int recordNumbers = 10)
         {
-            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileViewModel>>(_systemProfileRepository.GetByName(name));
+            return _mapper.Map<IEnumerable<SystemProfile>, IEnumerable<SystemProfileViewModel>>(_systemProfileRepository.GetByName(name, pageNumber, recordNumbers));
         }
 
         public void Remove(int id)

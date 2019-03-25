@@ -25,9 +25,9 @@ namespace ConsilioServices.Application.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<SystemUserViewModel> GetAll()
+        public IEnumerable<SystemUserViewModel> GetAll(int pageNumber = 1, int recordNumbers = 10)
         {
-            return _mapper.Map<IEnumerable<Domain.Entities.SystemUser>, IEnumerable<SystemUserViewModel>>(_systemUserRepository.GetAll());
+            return _mapper.Map<IEnumerable<Domain.Entities.SystemUser>, IEnumerable<SystemUserViewModel>>(_systemUserRepository.GetAll(pageNumber, recordNumbers));
         }
 
         public SystemUserViewModel GetById(int id)
@@ -35,9 +35,9 @@ namespace ConsilioServices.Application.Services
             return _mapper.Map<Domain.Entities.SystemUser, SystemUserViewModel>(_systemUserRepository.GetById(id));
         }
 
-        public IEnumerable<SystemUserViewModel> GetByName(string name)
+        public IEnumerable<SystemUserViewModel> GetByName(string name, int pageNumber = 1, int recordNumbers = 10)
         {
-            return _mapper.Map<IEnumerable<Domain.Entities.SystemUser>, IEnumerable<SystemUserViewModel>>(_systemUserRepository.GetByName(name));
+            return _mapper.Map<IEnumerable<Domain.Entities.SystemUser>, IEnumerable<SystemUserViewModel>>(_systemUserRepository.GetByName(name, pageNumber, recordNumbers));
         }
 
         public void Remove(int id)
