@@ -16,10 +16,10 @@ namespace ConsilioServices.Infrastructure.Data.Repository
             this._dataBase = new ConsilioContext();
         }
 
-        public void Add(TEntity obj)
+        public int Add(TEntity obj)
         {
             _dataBase.Set<TEntity>().Add(obj);
-            _dataBase.SaveChanges();
+            return _dataBase.SaveChanges();
         }
 
         public void Dispose()
@@ -45,16 +45,16 @@ namespace ConsilioServices.Infrastructure.Data.Repository
             return _dataBase.Set<TEntity>().Find(id);
         }
 
-        public void Remove(TEntity obj)
+        public int Remove(TEntity obj)
         {
             _dataBase.Set<TEntity>().Remove(obj);
-            _dataBase.SaveChanges();
+            return _dataBase.SaveChanges();
         }
 
-        public void Update(TEntity obj)
+        public int Update(TEntity obj)
         {
             _dataBase.Entry(obj).State = EntityState.Modified;
-            _dataBase.SaveChanges();
+            return _dataBase.SaveChanges();
         }
     }
 }

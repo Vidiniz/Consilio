@@ -29,7 +29,7 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet]
         public IActionResult Get(int id)
         {
             try
