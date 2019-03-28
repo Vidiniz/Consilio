@@ -74,6 +74,8 @@ namespace ConsilioServices.Tests.Infrastructure.Data
             Assert.AreEqual(true, RemoveItem() > 0 ? true : false);
         }
 
+        // TODO: Metodo de Teste GetAll
+
         private int InsertItem()
         {
             var systemProfile = new SystemProfile
