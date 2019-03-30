@@ -17,6 +17,6 @@ namespace ConsilioServices.Application.Interfaces
 
         void Remove(int id);
 
-        SystemUserViewModel Login(string user, string password);
+        string Login(LoginViewModel dataLogin, char[] config);
     }
 }

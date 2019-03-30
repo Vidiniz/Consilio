@@ -44,25 +44,28 @@ namespace ConsilioServices.Application.Services
             return _mapper.Map<IEnumerable<SystemUser>, IEnumerable<SystemUserTableViewModel>>(_systemUserRepository.GetByName(name).ToPagedList(pageNumber, recordNumbers));
         }
 
-        public SystemUserViewModel Login(string user, string password)
+        public string Login(LoginViewModel dataLogin, char[] config)
         {
-            if (string.IsNullOrEmpty(user) && string.IsNullOrEmpty(password))
+            if (dataLogin == null)
+                throw new Exception("Dados Inválidos");
+
+            if (string.IsNullOrEmpty(dataLogin.User) && string.IsNullOrEmpty(dataLogin.Password))
                 throw new BusisnessException("Usuário e senha não podem ser nulos");
 
-            if (string.IsNullOrEmpty(user))
+            if (string.IsNullOrEmpty(dataLogin.User))
                 throw new BusisnessException("Usuário não pode ser nulo");
 
-            if (string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(dataLogin.Password))
                 throw new BusisnessException("Senha não pode ser nula");
 
-            var encriptyPassword = EncryptData.EncryptPassword(password);
+            var encriptyPassword = EncryptData.EncryptPassword(dataLogin.Password);
 
-            var login = _systemUserRepository.Login(user, encriptyPassword);
+            var login = _systemUserRepository.Login(dataLogin.User, encriptyPassword);
 
             if (login == null)
                 throw new BusisnessException("Usuário ou Senha incorretos!");
 
-            return _mapper.Map<SystemUser, SystemUserViewModel>(login);
+            return new GenerationCredentials().GetCrendentials(login, config);
         }
 
         public void Remove(int id)
@@ -109,7 +112,6 @@ namespace ConsilioServices.Application.Services
             model.Password = EncryptData.EncryptPassword(model.Password);
 
             _systemUserRepository.Add(model);
-        }
-
+        }    
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
+    [Authorize()]
     [Route("api/[controller]")]
     [ApiController]
     public class SystemProfileController : ControllerBase
@@ -17,7 +19,8 @@ namespace ConsilioServices.ServiceApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(int pageNumber = 1, int recordNumbers = 10)
+        [Route("GetAll")]
+        public IActionResult GetAll(int pageNumber = 1, int recordNumbers = 10)
         {
             try
             {
@@ -29,7 +32,7 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             try
@@ -48,6 +51,7 @@ namespace ConsilioServices.ServiceApp.Controllers
         }
 
         [HttpGet]
+        [Route("GetByName")]
         public IActionResult GetByName(string value, int pageNumber = 1, int recordNumbers = 10)
         {
             try

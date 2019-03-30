@@ -1,10 +1,12 @@
 ﻿using System;
 using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
+    [Authorize()]
     [Route("api/[controller]")]
     [ApiController]
     public class SystemUserController : ControllerBase
@@ -131,19 +133,6 @@ namespace ConsilioServices.ServiceApp.Controllers
                 return BadRequest(new { Errors = ex.Message });
             }
         }
-
-        [HttpGet]
-        [Route("Login")]
-        public IActionResult Login(string user, string password)
-        {
-            try
-            {
-                return Ok(_systemUserAppService.Login(user, password));                
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { Errors = ex.Message });
-            }
-        }
+        
     }
 }
