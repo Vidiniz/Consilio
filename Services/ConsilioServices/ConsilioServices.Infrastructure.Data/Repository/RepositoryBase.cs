@@ -40,6 +40,11 @@ namespace ConsilioServices.Infrastructure.Data.Repository
             return result;
         }
 
+        public IEnumerable<TEntity> GetAll()
+        {
+            return _dataBase.Set<TEntity>().ToList();
+        }
+
         public TEntity GetById(int id)
         {
             return _dataBase.Set<TEntity>().Find(id);

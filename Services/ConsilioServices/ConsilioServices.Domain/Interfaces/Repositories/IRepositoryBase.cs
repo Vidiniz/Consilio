@@ -12,6 +12,8 @@ namespace ConsilioServices.Domain.Interfaces.Repositories
 
         IEnumerable<TEntity> GetAll(int pageNumber, int recordNumbers);
 
+        IEnumerable<TEntity> GetAll();
+
         int Update(TEntity obj);
 
         int Remove(TEntity obj);

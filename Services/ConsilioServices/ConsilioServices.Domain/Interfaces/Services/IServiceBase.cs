@@ -10,6 +10,8 @@ namespace ConsilioServices.Domain.Interfaces.Services
 
         IEnumerable<TEntity> GetAll(int numberRegisters, int maxRegisters);
 
+        IEnumerable<TEntity> GetAll();
+
         void Update(TEntity obj);
 
         void Remove(TEntity obj);

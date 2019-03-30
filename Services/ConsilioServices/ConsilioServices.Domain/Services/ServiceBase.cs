@@ -29,6 +29,11 @@ namespace ConsilioServices.Domain.Services
             return _repository.GetAll(numberRegisters, maxRegisters);
         }
 
+        public IEnumerable<TEntity> GetAll()
+        {
+            return _repository.GetAll();
+        }
+
         public TEntity GetById(int id)
         {
             return _repository.GetById(id);

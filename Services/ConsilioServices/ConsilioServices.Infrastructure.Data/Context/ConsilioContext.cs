@@ -11,6 +11,8 @@ namespace ConsilioServices.Infrastructure.Data.Context
     {
         public DbSet<SystemUser> SystemUsers { get; set; }
         public DbSet<SystemProfile> SystemProfiles { get; set; }
+        public DbSet<MenuAccess> MenuAccesses { get; set; }
+        public DbSet<SystemProfileMenuAccess> SystemProfileMenuAccesses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +38,8 @@ namespace ConsilioServices.Infrastructure.Data.Context
 
             modelBuilder.ApplyConfiguration(new SystemUserConfiguration());
             modelBuilder.ApplyConfiguration(new SystemProfileConfiguration());
+            modelBuilder.ApplyConfiguration(new MenuAccessConfiguration());
+            modelBuilder.ApplyConfiguration(new SystemProfileMenuAccessConfiguration());
         }
     }
 }

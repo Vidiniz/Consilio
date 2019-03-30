@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
-    [Authorize()]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SystemUserController : ControllerBase

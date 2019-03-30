@@ -4,14 +4,16 @@ using ConsilioServices.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsilioServices.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ConsilioContext))]
-    partial class ConsilioContextModelSnapshot : ModelSnapshot
+    [Migration("20190330161739_menu-access")]
+    partial class menuaccess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,6 +26,8 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Acess");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -51,27 +55,6 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SystemProfiles");
-                });
-
-            modelBuilder.Entity("ConsilioServices.Domain.Entities.SystemProfileMenuAccess", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Access");
-
-                    b.Property<int>("MenuAccessId");
-
-                    b.Property<int>("SystemProfileId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MenuAccessId");
-
-                    b.HasIndex("SystemProfileId");
-
-                    b.ToTable("SystemProfileMenuAccesses");
                 });
 
             modelBuilder.Entity("ConsilioServices.Domain.Entities.SystemUser", b =>
@@ -111,19 +94,6 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
                     b.HasIndex("SystemProfileId");
 
                     b.ToTable("SystemUsers");
-                });
-
-            modelBuilder.Entity("ConsilioServices.Domain.Entities.SystemProfileMenuAccess", b =>
-                {
-                    b.HasOne("ConsilioServices.Domain.Entities.MenuAccess", "MenuAccess")
-                        .WithMany("SystemProfileMenuAccesses")
-                        .HasForeignKey("MenuAccessId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("ConsilioServices.Domain.Entities.SystemProfile", "SystemProfile")
-                        .WithMany("SystemProfileMenuAccesses")
-                        .HasForeignKey("SystemProfileId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ConsilioServices.Domain.Entities.SystemUser", b =>
