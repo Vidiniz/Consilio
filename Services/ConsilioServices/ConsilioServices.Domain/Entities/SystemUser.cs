@@ -1,11 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ConsilioServices.Domain.Entities
 {
     public class SystemUser
     {
+        public SystemUser()
+        {
+            this.RegisterDate = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -23,5 +28,6 @@ namespace ConsilioServices.Domain.Entities
         public int SystemProfileId { get; set; }
 
         public SystemProfile SystemProfile { get; set; }
+         
     }
 }

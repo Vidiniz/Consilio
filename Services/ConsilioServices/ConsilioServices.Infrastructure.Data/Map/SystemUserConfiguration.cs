@@ -27,7 +27,7 @@ namespace ConsilioServices.Infrastructure.Data.Map
 
             builder.Property(su => su.Password)
                 .IsRequired()
-                .HasColumnType("varchar(20)")
+                .HasColumnType("varchar(200)")
                 .HasMaxLength(20);
 
             builder.Property(su => su.Status)

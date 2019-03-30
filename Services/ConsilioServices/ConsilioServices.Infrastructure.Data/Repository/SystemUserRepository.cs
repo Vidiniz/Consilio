@@ -27,5 +27,12 @@ namespace ConsilioServices.Infrastructure.Data.Repository
                     || result.LastName.Contains(name)
                     select result).ToList();
         }
+
+        public SystemUser Login(string user, string password)
+        {
+            return _dataBase.Set<SystemUser>().Where(su => su.Email.Equals(user.ToLower()) && su.Password.Equals(password))
+                                                             .ToList()
+                                                             .FirstOrDefault();
+        }
     }
 }

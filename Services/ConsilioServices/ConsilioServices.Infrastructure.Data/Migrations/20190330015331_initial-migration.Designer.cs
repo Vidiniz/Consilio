@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsilioServices.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ConsilioContext))]
-    [Migration("20190325135332_Initial-Migration")]
-    partial class InitialMigration
+    [Migration("20190330015331_initial-migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,7 +62,7 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varchar(20)")
+                        .HasColumnType("varchar(200)")
                         .HasMaxLength(20);
 
                     b.Property<DateTime>("RegisterDate");

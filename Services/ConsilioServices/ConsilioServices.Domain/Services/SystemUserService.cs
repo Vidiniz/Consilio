@@ -28,5 +28,10 @@ namespace ConsilioServices.Domain.Services
         {
             return _systemUserRepository.GetExactEmail(email);
         }
+
+        public SystemUser Login(string user, string password)
+        {
+            return _systemUserRepository.Login(user, password);
+        }
     }
 }

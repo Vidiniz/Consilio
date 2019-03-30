@@ -60,7 +60,7 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varchar(20)")
+                        .HasColumnType("varchar(200)")
                         .HasMaxLength(20);
 
                     b.Property<DateTime>("RegisterDate");

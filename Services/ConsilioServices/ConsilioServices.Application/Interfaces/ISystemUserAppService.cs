@@ -16,5 +16,7 @@ namespace ConsilioServices.Application.Interfaces
         void Update(SystemUserViewModel systemUserViewModel);
 
         void Remove(int id);
+
+        SystemUserViewModel Login(string user, string password);
     }
 }

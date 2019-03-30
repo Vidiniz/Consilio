@@ -130,6 +130,20 @@ namespace ConsilioServices.ServiceApp.Controllers
             {
                 return BadRequest(new { Errors = ex.Message });
             }
-        }        
+        }
+
+        [HttpGet]
+        [Route("Login")]
+        public IActionResult Login(string user, string password)
+        {
+            try
+            {
+                return Ok(_systemUserAppService.Login(user, password));                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Errors = ex.Message });
+            }
+        }
     }
 }

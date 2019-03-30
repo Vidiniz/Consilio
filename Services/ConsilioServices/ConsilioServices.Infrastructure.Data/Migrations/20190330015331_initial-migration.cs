@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ConsilioServices.Infrastructure.Data.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    Password = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    Password = table.Column<string>(type: "varchar(200)", maxLength: 20, nullable: false),
                     Status = table.Column<bool>(nullable: false),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     SystemProfileId = table.Column<int>(nullable: false)
