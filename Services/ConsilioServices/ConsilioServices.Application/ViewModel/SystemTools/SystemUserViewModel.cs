@@ -39,5 +39,6 @@ namespace ConsilioServices.Application.ViewModel.SystemTools
         public int SystemProfileId { get; set; }
 
         public SystemProfileViewModel SystemProfile { get; set; }
+
     }
 }

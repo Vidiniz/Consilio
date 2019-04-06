@@ -16,18 +16,18 @@ namespace ConsilioServices.Infrastructure.Data.Repository
             this._dataBase = new ConsilioContext();
         }
 
-        public int Add(TEntity obj)
+        public virtual int Add(TEntity obj)
         {
             _dataBase.Set<TEntity>().Add(obj);
             return _dataBase.SaveChanges();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _dataBase.Dispose();
         }
 
-        public IEnumerable<TEntity> GetAll(int pageNumber, int recordNumbers)
+        public virtual IEnumerable<TEntity> GetAll(int pageNumber, int recordNumbers)
         {
             var result = _dataBase.Set<TEntity>();
 
@@ -40,23 +40,23 @@ namespace ConsilioServices.Infrastructure.Data.Repository
             return result;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _dataBase.Set<TEntity>().ToList();
         }
 
-        public TEntity GetById(int id)
+        public virtual TEntity GetById(int id)
         {
             return _dataBase.Set<TEntity>().Find(id);
         }
 
-        public int Remove(TEntity obj)
+        public virtual int Remove(TEntity obj)
         {
             _dataBase.Set<TEntity>().Remove(obj);
             return _dataBase.SaveChanges();
         }
 
-        public int Update(TEntity obj)
+        public virtual int Update(TEntity obj)
         {
             _dataBase.Entry(obj).State = EntityState.Modified;
             return _dataBase.SaveChanges();

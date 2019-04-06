@@ -4,7 +4,9 @@ using ConsilioServices.Application.Services;
 using ConsilioServices.Domain.Interfaces.Repositories;
 using ConsilioServices.Domain.Interfaces.Services;
 using ConsilioServices.Domain.Services;
+using ConsilioServices.Infrastructure.CrossCutting.AccessControl;
 using ConsilioServices.Infrastructure.Data.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsilioServices.Infrastructure.CrossCutting.IoC
@@ -13,11 +15,12 @@ namespace ConsilioServices.Infrastructure.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-
             var mappingConfig = Application.AutoMapper.AutoMapperConfig.RegisterMappings();
             IMapper mapper = mappingConfig.CreateMapper();
 
             services.AddSingleton(mapper);
+            services.AddTransient<IAuthorizationPolicyProvider, AccessSpendPolicy>();
+            services.AddSingleton<IAuthorizationHandler, AccessControlHandlerRequirement>();
 
             services.AddScoped<ISystemUserRepository, SystemUserRepository>();
             services.AddScoped<ISystemProfileRepository, SystemProfileRepository>();
@@ -29,7 +32,7 @@ namespace ConsilioServices.Infrastructure.CrossCutting.IoC
             services.AddScoped<ISystemProfileMenuAccessService, SystemProfileMenuAccessService>();
             services.AddScoped<ISystemProfileAppService, SystemProfileAppService>();
             services.AddScoped<ISystemUserAppService, SystemUserAppService>();
-            services.AddScoped<IMenuAccessAppService, MenuAccessAppService>();            
+
         }
     }
 }

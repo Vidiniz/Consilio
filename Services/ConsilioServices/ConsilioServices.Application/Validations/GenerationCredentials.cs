@@ -11,7 +11,8 @@ namespace ConsilioServices.Application.Validations
     {
         public string GetCrendentials(SystemUser systemUser, char[] configuration)
         {
-            var credentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration)), SecurityAlgorithms.HmacSha256);
+            var credentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration)), 
+                SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 issuer: "consilio.system",
@@ -28,7 +29,9 @@ namespace ConsilioServices.Application.Validations
             return new[]
             {
                 new Claim(ClaimTypes.Name, $"{systemUser.Name} {systemUser.LastName}"),
-                new Claim(ClaimTypes.Email, systemUser.Email)
+                new Claim(ClaimTypes.Email, systemUser.Email),
+                new Claim(ClaimTypes.Role, systemUser.SystemProfile.Name),
+                new Claim("UserId", systemUser.Id.ToString())
             };
         }
         

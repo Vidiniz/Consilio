@@ -37,7 +37,9 @@ namespace ConsilioServices.ServiceApp
                         ValidAudience = "consilio.system",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
                     };                    
-                });
+                });          
+            
+            services.AddAuthorization();
 
             RegisterServices(services);
         }

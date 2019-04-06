@@ -1,12 +1,12 @@
 ﻿using System;
 using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
-using Microsoft.AspNetCore.Authorization;
+using ConsilioServices.Infrastructure.CrossCutting.AccessControl;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
-    [Authorize]
+    [AccessControl("SystemUser")]
     [Route("api/[controller]")]
     [ApiController]
     public class SystemUserController : ControllerBase

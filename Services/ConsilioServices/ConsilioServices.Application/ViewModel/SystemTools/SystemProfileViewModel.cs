@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsilioServices.Application.ViewModel.SystemTools
 {
@@ -14,5 +15,7 @@ namespace ConsilioServices.Application.ViewModel.SystemTools
 
         [Required(ErrorMessage = "O Campo Admin é obrigatório")]
         public bool HasAdmin { get; set; }
+
+        public IEnumerable<SystemProfileMenuAccessViewModel> SystemProfileMenuAccesses { get; set; }
     }
 }
