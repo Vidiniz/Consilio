@@ -17,3 +17,12 @@
 /Services/ConsilioServices/ConsilioServices.Infrastructure.CrossCutting/bin/Debug/netcoreapp2.1
 /Services/ConsilioServices/ConsilioServices.ServiceApp/bin/Debug/netcoreapp2.1
 /Services/ConsilioServices/ConsilioServices.Tests/bin/Debug/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Application/bin/Release/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Domain/bin/Release/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Infrastructure.CrossCutting/bin/Release/netcoreapp2.1/publish
+/Services/ConsilioServices/ConsilioServices.Infrastructure.CrossCutting/bin/Release/netcoreapp2.1/win10-x64
+/Services/ConsilioServices/ConsilioServices.Infrastructure.CrossCutting/bin/Release/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Infrastructure.Data/bin/Release/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.ServiceApp/bin/Release/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.Tests/bin/Release/netcoreapp2.1
+/Services/ConsilioServices/ConsilioServices.ServiceApp/Properties/PublishProfiles

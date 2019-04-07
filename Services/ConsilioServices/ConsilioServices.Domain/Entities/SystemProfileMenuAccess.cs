@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsilioServices.Domain.Entities
+﻿namespace ConsilioServices.Domain.Entities
 {
     public class SystemProfileMenuAccess
     {

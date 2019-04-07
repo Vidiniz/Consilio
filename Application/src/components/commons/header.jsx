@@ -5,11 +5,11 @@ export default props => (
     <header className="main-header">
         <a href="/#/" className="logo">
             <span className="logo-mini">
-                <i class="fa fa-shield"></i>
+                <i class="fa fa-group"></i>
             </span>
             <span className="logo-lg">
-                <i class="fa fa-shield"></i>
-                <b> Project</b> Base
+                <i class="fa fa-group"></i>
+                <b> Consilio</b> - Gestão
             </span>
         </a>
         <nav className="navbar navbar-static-top">
