@@ -32,6 +32,7 @@ namespace ConsilioServices.Infrastructure.CrossCutting.IoC
             services.AddScoped<ISystemProfileMenuAccessService, SystemProfileMenuAccessService>();
             services.AddScoped<ISystemProfileAppService, SystemProfileAppService>();
             services.AddScoped<ISystemUserAppService, SystemUserAppService>();
+            services.AddScoped<IAuthenticationAppService, AuthenticationAppService>();
 
         }
     }

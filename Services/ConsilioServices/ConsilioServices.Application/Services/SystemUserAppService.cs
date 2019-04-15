@@ -42,31 +42,7 @@ namespace ConsilioServices.Application.Services
         public IEnumerable<SystemUserTableViewModel> GetByName(string name, int pageNumber, int recordNumbers)
         {
             return _mapper.Map<IEnumerable<SystemUser>, IEnumerable<SystemUserTableViewModel>>(_systemUserRepository.GetByName(name).ToPagedList(pageNumber, recordNumbers));
-        }
-
-        public string Login(LoginViewModel dataLogin, char[] config)
-        {
-            if (dataLogin == null)
-                throw new Exception("Dados Inválidos");
-
-            if (string.IsNullOrEmpty(dataLogin.User) && string.IsNullOrEmpty(dataLogin.Password))
-                throw new AuthenticationException("Usuário e senha não podem ser nulos");
-
-            if (string.IsNullOrEmpty(dataLogin.User))
-                throw new AuthenticationException("Usuário não pode ser nulo");
-
-            if (string.IsNullOrEmpty(dataLogin.Password))
-                throw new AuthenticationException("Senha não pode ser nula");
-
-            var encriptyPassword = EncryptData.EncryptPassword(dataLogin.Password);
-
-            var login = _systemUserRepository.Login(dataLogin.User, encriptyPassword);
-
-            if (login == null)
-                throw new AuthenticationException("Usuário ou Senha incorretos!");
-
-            return new GenerationCredentials().GetCrendentials(login, config);
-        }
+        }        
 
         public void Remove(int id)
         {

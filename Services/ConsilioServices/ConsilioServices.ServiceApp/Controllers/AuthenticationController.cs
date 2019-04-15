@@ -4,6 +4,8 @@ using ConsilioServices.Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
@@ -13,35 +15,64 @@ namespace ConsilioServices.ServiceApp.Controllers
     {
         private readonly IConfiguration _configuration;
 
-        private readonly ISystemUserAppService _systemUserAppService;
+        private readonly IAuthenticationAppService _authenticationAppService;
 
-        public AuthenticationController(IConfiguration configuration, ISystemUserAppService systemUserAppService)
+        private readonly IServiceCollection _services;
+
+        public AuthenticationController(IConfiguration configuration, IAuthenticationAppService authenticationAppService)
         {
             _configuration = configuration;
 
-            _systemUserAppService = systemUserAppService;
+            _authenticationAppService = authenticationAppService;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody]LoginViewModel login, char[] config)
+        [Route("Login")]        
+        public IActionResult Login([FromBody]LoginViewModel login)
         {
             try
             {                
-                return Ok(new { Token = _systemUserAppService.Login(login, _configuration["SecurityKey"].ToCharArray()) });
+                return Ok(new { Token = _authenticationAppService.Login(login, _configuration["SecurityKey"].ToCharArray()) });
             }
             catch (BusisnessException ex)
             {
-                return NotFound(new { Login = ex.Message });
+                return BadRequest(new { Login = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // TODO: Implementar Log
+                return BadRequest(new { Errors = ex.Message });
             }
         }
 
         [AllowAnonymous]
         [HttpPost]
-        [ActionName("ValidateToken")]
-        public IActionResult ValidateToken([FromBody]string token)
+        [Route("ValidateToken")]
+        public IActionResult ValidateToken([FromBody]TokenViewModel token)
         {
-            return Ok();
+            try
+            {
+                if (token == null)
+                    return BadRequest(new { Error = "Token nulo ou inválido!" });
+
+                if (string.IsNullOrEmpty(token.Token))
+                    return BadRequest(new { Error = "Token nulo ou inválido!" });
+
+                if (!_authenticationAppService.ValidateToken(token.Token, _configuration["SecurityKey"].ToCharArray()))
+                    throw new BusisnessException("Token Inválido!");
+
+                return Ok();
+            }
+            catch(BusisnessException ex)
+            {
+                return BadRequest(new { Errors = ex.Message });
+            }
+            catch(Exception ex)
+            {
+                // TODO: Implementar Log
+                return BadRequest(new { Errors = ex.Message });
+            }            
         }
 
     }
