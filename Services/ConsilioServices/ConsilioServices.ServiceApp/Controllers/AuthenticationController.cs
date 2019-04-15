@@ -36,5 +36,13 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [ActionName("ValidateToken")]
+        public IActionResult ValidateToken([FromBody]string token)
+        {
+            return Ok();
+        }
+
     }
 }

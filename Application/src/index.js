@@ -7,9 +7,10 @@ import { Provider } from 'react-redux';
 import promise from 'redux-promise';
 import multi from 'redux-multi';
 import thunk from 'redux-thunk';
-import App from './main/app';
-import Auth from './authentication/auth';
 import reducers from './reducers/reducer';
+import Authentication from './authentication/authentication';
+// import App from './main/app';
+// import Auth from './authentication/auth';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ 
       && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -17,7 +18,7 @@ const store = applyMiddleware(multi, thunk, promise)(createStore)(reducers, devT
 
 ReactDOM.render(    
     <Provider store={store}>
-        <Auth />
+        <Authentication />
     </Provider>
     ,document.getElementById('root'));
 

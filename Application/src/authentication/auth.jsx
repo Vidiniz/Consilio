@@ -17,7 +17,7 @@ class Auth extends Component {
 
     render() {
         return (
-            <body className="login-page">
+            <div className="login-page">
                 <div className="login-box">
                     <div className="login-logo"><b>Consilio</b> Project</div>
                     <div className="login-box-body">
@@ -42,11 +42,11 @@ class Auth extends Component {
                         </form>
                     </div>
                 </div>
-            </body>
+            </div>
         )
     }
 }
 
-Auth = reduxForm({form: 'authForm'})(Auth)
-const mapDispathToProps = dispatch => bindActionCreators({login})
-export default Auth;
+Auth = reduxForm({form: 'authForm'})(Auth);
+const mapDispathToProps = dispatch => bindActionCreators({login});
+export default connect(null, mapDispathToProps)(Auth)

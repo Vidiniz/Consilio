@@ -50,20 +50,20 @@ namespace ConsilioServices.Application.Services
                 throw new Exception("Dados Inválidos");
 
             if (string.IsNullOrEmpty(dataLogin.User) && string.IsNullOrEmpty(dataLogin.Password))
-                throw new BusisnessException("Usuário e senha não podem ser nulos");
+                throw new AuthenticationException("Usuário e senha não podem ser nulos");
 
             if (string.IsNullOrEmpty(dataLogin.User))
-                throw new BusisnessException("Usuário não pode ser nulo");
+                throw new AuthenticationException("Usuário não pode ser nulo");
 
             if (string.IsNullOrEmpty(dataLogin.Password))
-                throw new BusisnessException("Senha não pode ser nula");
+                throw new AuthenticationException("Senha não pode ser nula");
 
             var encriptyPassword = EncryptData.EncryptPassword(dataLogin.Password);
 
             var login = _systemUserRepository.Login(dataLogin.User, encriptyPassword);
 
             if (login == null)
-                throw new BusisnessException("Usuário ou Senha incorretos!");
+                throw new AuthenticationException("Usuário ou Senha incorretos!");
 
             return new GenerationCredentials().GetCrendentials(login, config);
         }

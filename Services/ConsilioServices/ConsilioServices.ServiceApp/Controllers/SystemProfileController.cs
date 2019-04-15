@@ -1,6 +1,7 @@
 ﻿using System;
 using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
+using ConsilioServices.Domain.Exceptions;
 using ConsilioServices.Infrastructure.CrossCutting.AccessControl;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,20 +20,26 @@ namespace ConsilioServices.ServiceApp.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
+        [ActionName("ObterTodos")]
         public IActionResult GetAll(int pageNumber = 1, int recordNumbers = 10)
         {
             try
             {
                 return Ok(_systemProfileAppService.GetAll(pageNumber, recordNumbers));
             }
+            catch(BusisnessException ex)
+            {
+                return BadRequest(new { Erros = ex.Message });
+            }
             catch(Exception ex)
             {
+                //TODO: Implementar Log
                 return BadRequest(new { Erros = ex.Message });
             }
         }
 
         [HttpGet("{id}")]
+        [ActionName("ObterPorId")]
         public IActionResult Get(int id)
         {
             try
@@ -44,14 +51,20 @@ namespace ConsilioServices.ServiceApp.Controllers
 
                 return Ok(result);
             }
-            catch(Exception ex)
+            catch (BusisnessException ex)
             {
+                return BadRequest(new { Erros = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                //TODO: Implementar Log
                 return BadRequest(new { Erros = ex.Message });
             }
         }
 
         [HttpGet]
         [Route("GetByName")]
+        [ActionName("ObterPorNome")]
         public IActionResult GetByName(string value, int pageNumber = 1, int recordNumbers = 10)
         {
             try
@@ -66,13 +79,19 @@ namespace ConsilioServices.ServiceApp.Controllers
 
                 return Ok(result);
             }
-            catch(Exception ex)
+            catch (BusisnessException ex)
             {
-                return BadRequest(new { Errors = ex.Message });
+                return BadRequest(new { Erros = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                //TODO: Implementar Log
+                return BadRequest(new { Erros = ex.Message });
             }
         }
 
         [HttpPost]
+        [ActionName("SalvarPerfil")]
         public IActionResult Post([FromBody] SystemProfileViewModel value)
         {
             try
@@ -85,13 +104,19 @@ namespace ConsilioServices.ServiceApp.Controllers
 
                 return BadRequest(new { Errors = ModelState });
             }
-            catch(Exception ex)
+            catch (BusisnessException ex)
             {
-                return BadRequest(new { Errors = ex.Message });
+                return BadRequest(new { Erros = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                //TODO: Implementar Log
+                return BadRequest(new { Erros = ex.Message });
             }
         }
 
         [HttpPut("{id}")]
+        [ActionName("AlterarPerfil")]
         public IActionResult Put(int id, [FromBody] SystemProfileViewModel value)
         {
             try
@@ -109,13 +134,19 @@ namespace ConsilioServices.ServiceApp.Controllers
 
                 return BadRequest(new { Errors = ModelState });
             }
+            catch (BusisnessException ex)
+            {
+                return BadRequest(new { Erros = ex.Message });
+            }
             catch (Exception ex)
             {
-                return BadRequest(new { Errors = ex.Message });
+                //TODO: Implementar Log
+                return BadRequest(new { Erros = ex.Message });
             }
         }
 
         [HttpDelete("{id}")]
+        [ActionName("RemoverPerfil")]
         public IActionResult Delete(int id)
         {
             try
@@ -129,9 +160,14 @@ namespace ConsilioServices.ServiceApp.Controllers
 
                 return NoContent();
             }
+            catch (BusisnessException ex)
+            {
+                return BadRequest(new { Erros = ex.Message });
+            }
             catch (Exception ex)
             {
-                return BadRequest(new { Errors = ex.Message });
+                //TODO: Implementar Log
+                return BadRequest(new { Erros = ex.Message });
             }
         }
     }
