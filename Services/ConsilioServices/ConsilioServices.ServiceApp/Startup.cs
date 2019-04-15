@@ -19,7 +19,6 @@ namespace ConsilioServices.ServiceApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -44,7 +43,6 @@ namespace ConsilioServices.ServiceApp
             RegisterServices(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -63,7 +61,7 @@ namespace ConsilioServices.ServiceApp
 
         private static void RegisterServices(IServiceCollection services)
         {
-            // Adding dependencies from another layers (isolated from Presentation)
+            // Injeção de dependencia na camada de CrossCutting
             NativeInjectorBootStrapper.RegisterServices(services);
         }
     }
