@@ -4,7 +4,7 @@ using ConsilioServices.Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace ConsilioServices.ServiceApp.Controllers
@@ -17,13 +17,16 @@ namespace ConsilioServices.ServiceApp.Controllers
 
         private readonly IAuthenticationAppService _authenticationAppService;
 
-        private readonly IServiceCollection _services;
+        private readonly ILogger<AuthenticationController> _logger;
 
-        public AuthenticationController(IConfiguration configuration, IAuthenticationAppService authenticationAppService)
+        public AuthenticationController(IConfiguration configuration, IAuthenticationAppService authenticationAppService,
+            ILogger<AuthenticationController> logger)
         {
             _configuration = configuration;
 
             _authenticationAppService = authenticationAppService;
+
+            _logger = logger;
         }
 
         [AllowAnonymous]
@@ -41,8 +44,8 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                // TODO: Implementar Log
-                return BadRequest(new { Errors = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
@@ -68,11 +71,11 @@ namespace ConsilioServices.ServiceApp.Controllers
             {
                 return BadRequest(new { Errors = ex.Message });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                // TODO: Implementar Log
-                return BadRequest(new { Errors = ex.Message });
-            }            
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
+            }
         }
 
     }

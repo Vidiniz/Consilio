@@ -1,9 +1,10 @@
-﻿using System;
-using ConsilioServices.Application.Interfaces;
+﻿using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Exceptions;
 using ConsilioServices.Infrastructure.CrossCutting.AccessControl;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
@@ -14,13 +15,17 @@ namespace ConsilioServices.ServiceApp.Controllers
     {
         private readonly ISystemProfileAppService _systemProfileAppService;
 
-        public SystemProfileController(ISystemProfileAppService systemProfileAppService)
+        private readonly ILogger<SystemProfileController> _logger;
+
+        public SystemProfileController(ISystemProfileAppService systemProfileAppService, ILogger<SystemProfileController> logger)
         {
             _systemProfileAppService = systemProfileAppService;
+
+            _logger = logger;
         }
 
         [HttpGet]
-        [ActionName("ObterTodos")]
+        [Route("ObterTodos")]
         public IActionResult GetAll(int pageNumber = 1, int recordNumbers = 10)
         {
             try
@@ -31,16 +36,16 @@ namespace ConsilioServices.ServiceApp.Controllers
             {
                 return BadRequest(new { Erros = ex.Message });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //TODO: Implementar Log
-                return BadRequest(new { Erros = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpGet("{id}")]
-        [ActionName("ObterPorId")]
-        public IActionResult Get(int id)
+        [Route("ObterPorId")]
+        public IActionResult GetById(int id)
         {
             try
             {
@@ -57,14 +62,13 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: Implementar Log
-                return BadRequest(new { Erros = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
-        [HttpGet]
-        [Route("GetByName")]
-        [ActionName("ObterPorNome")]
+        [HttpGet]        
+        [Route("ObterPorNome")]
         public IActionResult GetByName(string value, int pageNumber = 1, int recordNumbers = 10)
         {
             try
@@ -85,14 +89,14 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: Implementar Log
-                return BadRequest(new { Erros = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpPost]
-        [ActionName("SalvarPerfil")]
-        public IActionResult Post([FromBody] SystemProfileViewModel value)
+        [Route("SalvarPerfil")]
+        public IActionResult PostProfile([FromBody] SystemProfileViewModel value)
         {
             try
             {
@@ -110,14 +114,14 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: Implementar Log
-                return BadRequest(new { Erros = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpPut("{id}")]
-        [ActionName("AlterarPerfil")]
-        public IActionResult Put(int id, [FromBody] SystemProfileViewModel value)
+        [Route("AlterarPerfil")]
+        public IActionResult PutProfile(int id, [FromBody] SystemProfileViewModel value)
         {
             try
             {
@@ -140,14 +144,14 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: Implementar Log
-                return BadRequest(new { Erros = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpDelete("{id}")]
-        [ActionName("RemoverPerfil")]
-        public IActionResult Delete(int id)
+        [Route("RemoverPerfil")]
+        public IActionResult DeleteProfile(int id)
         {
             try
             {
@@ -166,8 +170,8 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: Implementar Log
-                return BadRequest(new { Erros = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
     }

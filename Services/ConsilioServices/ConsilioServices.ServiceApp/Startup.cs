@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+
 
 namespace ConsilioServices.ServiceApp
 {
@@ -28,22 +30,22 @@ namespace ConsilioServices.ServiceApp
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
+                        ValidateIssuer           = true,
+                        ValidateAudience         = true,
+                        ValidateLifetime         = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = "consilio.system",
-                        ValidAudience = "consilio.system",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
+                        ValidIssuer              = "consilio.system",
+                        ValidAudience            = "consilio.system",
+                        IssuerSigningKey         = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
                     };                    
                 });          
             
-            services.AddAuthorization();
+            services.AddAuthorization();            
 
             RegisterServices(services);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {

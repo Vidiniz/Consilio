@@ -1,9 +1,10 @@
-﻿using System;
-using ConsilioServices.Application.Interfaces;
+﻿using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Exceptions;
 using ConsilioServices.Infrastructure.CrossCutting.AccessControl;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
@@ -14,14 +15,18 @@ namespace ConsilioServices.ServiceApp.Controllers
     {
         private readonly ISystemUserAppService _systemUserAppService;
 
-        public SystemUserController(ISystemUserAppService systemUserAppService)
+        private readonly ILogger<SystemUserController> _logger;
+
+        public SystemUserController(ISystemUserAppService systemUserAppService, ILogger<SystemUserController> logger)
         {
             _systemUserAppService = systemUserAppService;
+
+            _logger = logger;
         }
 
         [HttpGet]
-        [ActionName("ObterTodos")]
-        public IActionResult Get(int pageNumber = 1, int recordNumbers = 10)
+        [Route("ObterTodos")]
+        public IActionResult GetAll(int pageNumber = 1, int recordNumbers = 10)
         {
             try
             {
@@ -31,16 +36,16 @@ namespace ConsilioServices.ServiceApp.Controllers
             {
                 return BadRequest(new { Errors = ex.Message });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                // TODO: Implementar log
-                return BadRequest(new { Errors = ex.Message });
-            }            
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
+            }
         }
 
         [HttpGet("{id}")]
-        [ActionName("ObterPorId")]
-        public IActionResult Get(int id)
+        [Route("ObterPorId")]
+        public IActionResult GetById(int id)
         {
             try
             {
@@ -57,13 +62,13 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                // TODO: Implementar log
-                return BadRequest(new { Errors = ex.Message });
-            }            
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
+            }
         }
 
         [HttpGet]
-        [ActionName("ObterPorNome")]
+        [Route("ObterPorNome")]
         public IActionResult GetByName(string name, int pageNumber = 1, int recordNumbers = 10)
         {
             try
@@ -84,14 +89,14 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                // TODO: Implementar log
-                return BadRequest(new { Errors = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpPost]
-        [ActionName("SalvarUsuario")]
-        public IActionResult Post([FromBody]SystemUserViewModel  value)
+        [Route("SalvarUsuario")]
+        public IActionResult PostUser([FromBody]SystemUserViewModel  value)
         {
             try
             {
@@ -108,16 +113,16 @@ namespace ConsilioServices.ServiceApp.Controllers
             {
                 return BadRequest(new { Errors = ex.Message });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                // TODO: Implementar log
-                return BadRequest(new { Errors = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpPut("{id}")]
-        [ActionName("AlterarUsuario")]
-        public IActionResult Put(int id, [FromBody] SystemUserViewModel value)
+        [Route("AlterarUsuario")]
+        public IActionResult PutUser(int id, [FromBody] SystemUserViewModel value)
         {
             try
             {
@@ -138,16 +143,16 @@ namespace ConsilioServices.ServiceApp.Controllers
             {
                 return BadRequest(new { Errors = ex.Message });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                // TODO: Implementar log
-                return BadRequest(new { Errors = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
 
         [HttpDelete("{id}")]
-        [ActionName("RemoverUsuario")]
-        public IActionResult Delete(int id)
+        [Route("RemoverUsuario")]
+        public IActionResult DeleteUser(int id)
         {
             try
             {
@@ -166,8 +171,8 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
             catch (Exception ex)
             {
-                // TODO: Implementar log
-                return BadRequest(new { Errors = ex.Message });
+                _logger.LogError(ex.Message, ex.StackTrace);
+                return BadRequest(new { Errors = $"Erro não catalogado. Entre em contato com Administrador. Erro - {ex.Message}" });
             }
         }
         
