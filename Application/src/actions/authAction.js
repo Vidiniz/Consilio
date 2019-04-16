@@ -1,7 +1,7 @@
 import { authenticationRequest, defautlRequest } from '../requests/authRequests';
 
 export const login = values => {
-    return defautlRequest('Authentication', values)
+    return authenticationRequest(values)
 } 
 
 export const validateToken = token => {

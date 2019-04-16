@@ -25,6 +25,14 @@ namespace ConsilioServices.ServiceApp
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("DefaultPolicy", builder =>
+                {
+                    builder.WithOrigins(Configuration["ApiAccessPermission"]).AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -55,6 +63,8 @@ namespace ConsilioServices.ServiceApp
             {
                 app.UseHsts();
             }
+
+            app.UseCors("DefaultPolicy");
 
             //app.UseHttpsRedirection();
             app.UseAuthentication();

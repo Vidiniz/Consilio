@@ -2,12 +2,14 @@
 using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Exceptions;
 using ConsilioServices.Infrastructure.CrossCutting.AccessControl;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
+    [EnableCors("DefaultPolicy")]
     [AccessControl("SystemProfile")]
     [Route("api/[controller]")]
     [ApiController]

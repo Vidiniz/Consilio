@@ -3,7 +3,8 @@ import { toastr } from 'react-redux-toastr';
 
 export const authenticationRequest = value => {
     return dispatch => {
-        axios.post('http://localhost:5000/api/authentication', value)
+        console.log(value);
+        axios.post('http://localhost:5000/api/Authentication/login', value)
             .then(response => {
                 dispatch({ type: 'TOKEN_VALIDATED', payload: response.data.valid })
             })

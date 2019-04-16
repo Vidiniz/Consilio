@@ -3,13 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Input from '../components/commons/inputAuth';
-import { login } from '../actions/authAction'; 
+import { login } from '../actions/authAction';
 
 class Auth extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { loginMode: true }
-    }
     componentWillMount() {
         document.body.classList.add('login-page')
     }
@@ -22,30 +18,36 @@ class Auth extends Component {
         this.setState({ loginMode: !this.state.loginMode })
     }
 
+    onSubmit(values) {
+        const { login } = this.props;
+        login(values);
+    }
+
     render() {
+        const { handleSubmit } = this.props
         return (
             <div className="login-page">
                 <div className="login-box">
                     <div className="login-logo"><b>Consilio</b> Project</div>
                     <div className="login-box-body">
                         <p className="login-box-msg">Efetue login</p>
-                        <form action="">
-                            <Field component={Input} type="input" name="email"
-                                placeholder="E-mail" icon="glyphicon glyphicon-user" maxLength="50"/>
+                        <form onSubmit={handleSubmit(v => this.onSubmit(v))}>
+                            <Field component={Input} type="input" name="user"
+                                placeholder="E-mail" icon="glyphicon glyphicon-user" maxLength="50" />
                             <Field component={Input} type="password" name="password"
-                                placeholder="Senha" icon="glyphicon glyphicon-lock" maxLength="20"/>
+                                placeholder="Senha" icon="glyphicon glyphicon-lock" maxLength="20" />
                             <div className="row">
                                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <a href="#">Recuperar senha</a>
-                                </div>                                
+                                </div>
                                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                                    <button 
-                                        type="submit" 
+                                    <button
+                                        type="submit"
                                         className="btn btn-primary btn-block btn-flat">
                                         Entrar
                                     </button>
                                 </div>
-                            </div>        
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -54,6 +56,6 @@ class Auth extends Component {
     }
 }
 
-Auth = reduxForm({form: 'authForm'})(Auth);
-const mapDispathToProps = dispatch => bindActionCreators({login});
-export default connect(null, mapDispathToProps)(Auth)
+Auth = reduxForm({ form: 'authForm' })(Auth);
+const mapDispatchToProps = dispatch => bindActionCreators({ login }, dispatch)
+export default connect(null, mapDispatchToProps)(Auth)

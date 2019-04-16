@@ -2,6 +2,7 @@
 using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using System;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
+    [EnableCors("DefaultPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
