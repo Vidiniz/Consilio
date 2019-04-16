@@ -8,11 +8,9 @@ import App from '../main/app';
 
 class Authentication extends Component {
     componentWillMount() {
-        // TODO: Remover console
-        console.log(this.props);
-        
+        console.log(this.props)
         if (this.props.user) {            
-            this.props.validateToken(this.props.auth.user.token)
+            this.props.validateToken(this.props.auth.token)
         }
     }
 

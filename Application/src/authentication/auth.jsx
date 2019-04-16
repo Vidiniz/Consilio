@@ -12,11 +12,7 @@ class Auth extends Component {
 
     componentWillUnmount() {
         document.body.classList.remove('login-page');
-    }
-
-    changeMode() {
-        this.setState({ loginMode: !this.state.loginMode })
-    }
+    }    
 
     onSubmit(values) {
         const { login } = this.props;
