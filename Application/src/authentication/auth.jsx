@@ -10,6 +10,13 @@ class Auth extends Component {
         super(props)
         this.state = { loginMode: true }
     }
+    componentWillMount() {
+        document.body.classList.add('login-page')
+    }
+
+    componentWillUnmount() {
+        document.body.classList.remove('login-page');
+    }
 
     changeMode() {
         this.setState({ loginMode: !this.state.loginMode })

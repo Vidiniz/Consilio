@@ -15,7 +15,8 @@
 }
 
 .login-page {
-    background-image : linear-gradient(#136ca0, #fff)!important;
+    /*background-image : linear-gradient(#136ca0, #fff)!important;*/
+    background: #54a8d8 !important;
 }
 
 .login-box-body {
