@@ -31,9 +31,9 @@ class Auth extends Component {
                         <p className="login-box-msg">Efetue login</p>
                         <form action="">
                             <Field component={Input} type="input" name="email"
-                                placeholder="E-mail" icon="glyphicon glyphicon-user"/>
+                                placeholder="E-mail" icon="glyphicon glyphicon-user" maxLength="50"/>
                             <Field component={Input} type="password" name="password"
-                                placeholder="Senha" icon="glyphicon glyphicon-lock"/>
+                                placeholder="Senha" icon="glyphicon glyphicon-lock" maxLength="20"/>
                             <div className="row">
                                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                     <a href="#">Recuperar senha</a>

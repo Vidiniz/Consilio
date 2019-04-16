@@ -13,14 +13,11 @@ export default (state = INITIAL_STATE, action) => {
             else {
                 localStorage.removeItem(userKey)
                 return { ...state, validToken: false, user: null}
-            }
-            break;
-        
+            }        
         case 'USER_FETCHED':
             localStorage.setItem(userKey, JSON.stringify(action.payload))
             return { ...state, user: action.payload, validToken: true}
         default:
             return state
-            break;
     }
 }
