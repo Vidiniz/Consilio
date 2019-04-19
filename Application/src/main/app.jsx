@@ -10,8 +10,7 @@ class App extends Component {
             <HashRouter>
                 <div className="wrapper">
                     <Header />                    
-                    <Sidebar />
-                    
+                    <Sidebar />                    
                     <Footer />
                 </div>
             </HashRouter>

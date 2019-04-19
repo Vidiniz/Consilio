@@ -8,7 +8,6 @@ import App from '../main/app';
 
 class Authentication extends Component {
     componentWillMount() {
-        console.log(this.props)
         if (this.props.user) {            
             this.props.validateToken(this.props.auth.token)
         }

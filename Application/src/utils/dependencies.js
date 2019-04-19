@@ -7,3 +7,4 @@ import '../../node_modules/admin-lte/dist/css/AdminLTE.min.css';
 import '../../node_modules/admin-lte/dist/css/skins/_all-skins.min.css';
 import '../../node_modules/admin-lte/plugins/iCheck/flat/_all.css';
 import '../index.css';
+import '../../node_modules/react-redux-toastr/lib/css/react-redux-toastr.min.css';

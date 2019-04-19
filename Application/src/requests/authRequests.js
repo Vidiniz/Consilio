@@ -2,16 +2,23 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 
 export const authenticationRequest = value => {
-    return dispatch => {
-        axios.post('http://localhost:5000/api/Authentication/login', value)
-            .then(response => {
-                dispatch({ type: 'USER_FETCHED', payload: response.data })
-            })
-            .catch(error => {
-                dispatch({ type: 'USER_FETCHED', payload: false })
-            })
-    }
+        return dispatch => {
+            axios.post('http://localhost:5000/api/Authentication/login', value)
+                .then(response => {
+                    dispatch({ type: 'USER_FETCHED', payload: response.data })
+                })
+                .catch(erro => {
+                    try {
+                        toastr.error('Acesso Negado', erro.response.data.login)                    
+                    }
+                    catch (e) {
+                        toastr.error('Erro', `${e.name} - ${e.message}` )
+                    }                  
+                })
+        }
 }
+
+
 
 export const defautlRequest = (dataUrl, value) => {
     return dispatch => {
