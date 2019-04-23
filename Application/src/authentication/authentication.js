@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { validateToken } from '../actions/authAction';
+import { valiteTokenRequest } from '../actions/authAction';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -8,8 +8,8 @@ import App from '../main/app';
 
 class Authentication extends Component {
     componentWillMount() {
-        if (this.props.user) {            
-            this.props.validateToken(this.props.auth.token)
+        if (this.props.auth.user) {            
+            this.props.valiteTokenRequest(this.props.auth.user.token)
         }
     }
 
@@ -26,5 +26,5 @@ class Authentication extends Component {
     }
 }
 const mapStateToProps = state => ({ auth: state.auth })
-const mapDispatchToProps = dispatch => bindActionCreators({ validateToken }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ valiteTokenRequest }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Authentication)

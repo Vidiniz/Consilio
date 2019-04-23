@@ -1,12 +1,16 @@
-import { authenticationRequest, defautlRequest } from '../requests/authRequests';
+import { authenticationRequest, validateToken } from '../requests/authRequests';
 
 export const login = values => {
     return authenticationRequest(values);
 } 
 
-export const validateToken = token => {
+export const logout = () => {
+    return { type: 'TOKEN_VALIDATED', payload: false }
+}
+
+export const valiteTokenRequest = token => {
     if (token) {
-        return authenticationRequest(token)      
+        return validateToken({ token : token })      
     }
     else {
         return dispatch => ({ type: 'TOKEN_VALIDATED', payload: false }) 
