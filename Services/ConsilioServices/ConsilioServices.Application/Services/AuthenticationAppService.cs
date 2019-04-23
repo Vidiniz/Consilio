@@ -1,6 +1,8 @@
-﻿using ConsilioServices.Application.Interfaces;
+﻿using AutoMapper;
+using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.Validations;
 using ConsilioServices.Application.ViewModel.SystemTools;
+using ConsilioServices.Domain.Entities;
 using ConsilioServices.Domain.Exceptions;
 using ConsilioServices.Domain.Interfaces.Repositories;
 using Microsoft.IdentityModel.Tokens;
@@ -12,12 +14,16 @@ namespace ConsilioServices.Application.Services
     {
         private readonly ISystemUserRepository _systemUserRepository;
 
-        public AuthenticationAppService(ISystemUserRepository systemUserRepository)
+        private readonly IMapper _mapper;
+
+        public AuthenticationAppService(ISystemUserRepository systemUserRepository, IMapper mapper)
         {
             _systemUserRepository = systemUserRepository;
+
+            _mapper = mapper;
         }
 
-        public string Login(LoginViewModel dataLogin, char[] config)
+        public DataUserViewModel Login(LoginViewModel dataLogin, char[] config)
         {
             if (dataLogin == null)
                 throw new Exception("Dados Inválidos");
@@ -38,7 +44,13 @@ namespace ConsilioServices.Application.Services
             if (login == null)
                 throw new AuthenticationException("Usuário ou Senha incorreto(s)!");
 
-            return new GenerationCredentials().GetCrendentials(login, config);
+            var token = new GenerationCredentials().GetCrendentials(login, config);
+
+            var result = _mapper.Map<SystemUser, DataUserViewModel>(login);
+
+            result.Token = token;
+
+            return result;
         }
 
         public bool ValidateToken(string token, char[] config)

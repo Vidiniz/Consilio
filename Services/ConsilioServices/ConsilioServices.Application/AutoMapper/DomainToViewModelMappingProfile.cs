@@ -12,6 +12,9 @@ namespace ConsilioServices.Application.AutoMapper
             CreateMap<SystemUser, SystemUserTableViewModel>();
             CreateMap<SystemProfile, SystemProfileViewModel>();
             CreateMap<SystemProfile, SystemProfileTableViewModel>();
+            CreateMap<SystemUser, DataUserViewModel>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(source => $"{source.Name} {source.LastName}"))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(source => source.Email ));                
         }
     }
 }

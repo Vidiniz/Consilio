@@ -18,7 +18,7 @@ export const authenticationRequest = value => {
     }
 }
 
-export const validateToken = value => {
+export const validateToken = value => {    
     return defautlRequest('ValidateToken', value);
 }
 

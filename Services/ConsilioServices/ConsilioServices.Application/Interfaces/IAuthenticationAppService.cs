@@ -6,6 +6,6 @@ namespace ConsilioServices.Application.Interfaces
     {
         bool ValidateToken(string token, char[] config);
 
-        string Login(LoginViewModel dataLogin, char[] config);
+        DataUserViewModel Login(LoginViewModel dataLogin, char[] config);
     }
 }

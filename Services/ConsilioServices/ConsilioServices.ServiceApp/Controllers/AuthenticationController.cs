@@ -38,7 +38,7 @@ namespace ConsilioServices.ServiceApp.Controllers
         {
             try
             {                
-                return Ok(new { Token = _authenticationAppService.Login(login, _configuration["SecurityKey"].ToCharArray()) });
+                return Ok(_authenticationAppService.Login(login, _configuration["SecurityKey"].ToCharArray()) );
             }
             catch (BusisnessException ex)
             {
@@ -67,7 +67,7 @@ namespace ConsilioServices.ServiceApp.Controllers
                 if (!_authenticationAppService.ValidateToken(token.Token, _configuration["SecurityKey"].ToCharArray()))
                     throw new BusisnessException("Token Inválido!");
 
-                return Ok();
+                return Ok("Token Válido");
             }
             catch(BusisnessException ex)
             {
