@@ -22,6 +22,9 @@ class Authentication extends Component {
         else if(!user && !validToken) {
             return <Auth />            
         } 
+        else if(user && !validToken) {
+            return <Auth />            
+        }
         else {
             return false
         }

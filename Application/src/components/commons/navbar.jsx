@@ -12,7 +12,7 @@ class Navbar extends Component {
     }
 
     changeOpen() {                
-        this.state = ({ open: !this.state.open })
+        this.setState({ open: !this.state.open });        
     }
 
     render() {       
@@ -20,7 +20,7 @@ class Navbar extends Component {
         return (
             <div className="navbar-custom-menu">
                 <ul className="nav navbar-nav">
-                    <li onMouseLeave={this.changeOpen}
+                    <li onMouseLeave={this.changeOpen} onMouseEnter={this.changeOpen}
                         className={`dropdown user user-menu ${this.state.open ? 'open' : ''}`}>
                         <a href onClick={this.changeOpen}
                             aria-expanded={this.state.open ? 'true' : 'false'}
@@ -28,11 +28,12 @@ class Navbar extends Component {
                             data-toggle="dropdown">
                             <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/16x16/plain/user.png"
                                     className="img-circle" alt="User" />
+                            &nbsp;
                             <span className="hidden-xs">{name}</span>
                         </a>
                         <ul className="dropdown-menu">
                             <li className="user-header">
-                            <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/16x16/plain/user.png"
+                            <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/48x48/plain/user.png"
                                     className="img-circle" alt="User" />
                                 <p>{name}<small>{email}</small></p>
                             </li>

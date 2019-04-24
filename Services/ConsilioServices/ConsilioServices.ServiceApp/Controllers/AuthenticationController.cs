@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
 
 namespace ConsilioServices.ServiceApp.Controllers
 {
@@ -34,7 +35,7 @@ namespace ConsilioServices.ServiceApp.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]        
-        public IActionResult Login([FromBody]LoginViewModel login)
+        public async Task<IActionResult> Login([FromBody]LoginViewModel login)
         {
             try
             {                

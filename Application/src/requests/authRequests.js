@@ -12,7 +12,12 @@ export const authenticationRequest = value => {
                     toastr.error('Acesso Negado', erro.response.data.login)
                 }
                 catch (e) {
-                    toastr.error('Erro', `${e.name} - ${e.message}`)
+                    if (e.name === 'TypeError') {
+                        toastr.error('Erro', `Acesso negado ao Servidor!`)
+                    }
+                    else {
+                        toastr.error('Erro', `${e.name} - ${e.message}`)
+                    }
                 }
             })
     }
@@ -35,7 +40,12 @@ const defautlRequest = (dataUrl, value) => {
                     toastr.error('Erro', error.response.data.errors)
                 }
                 catch (e) {
-                    toastr.error(e.name, e.message);
+                    if (e.name === 'TypeError') {
+                        toastr.error('Erro', `Acesso negado ao Servidor!`)
+                    }
+                    else {
+                        toastr.error('Erro', `${e.name} - ${e.message}`)
+                    }
                 }
             })
     }
