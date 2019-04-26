@@ -20,7 +20,9 @@ class Navbar extends Component {
         return (
             <div className="navbar-custom-menu">
                 <ul className="nav navbar-nav">
-                    <li onMouseLeave={this.changeOpen} onMouseEnter={this.changeOpen}
+                    <li 
+                        // onMouseLeave={this.changeOpen} 
+                        // onMouseEnter={this.changeOpen}
                         className={`dropdown user user-menu ${this.state.open ? 'open' : ''}`}>
                         <a href onClick={this.changeOpen}
                             aria-expanded={this.state.open ? 'true' : 'false'}
