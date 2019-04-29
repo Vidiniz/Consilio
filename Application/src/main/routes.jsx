@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router';
-import User from '../components/users/user';
+import User from '../components/system/user';
+import Profile from '../components/system/profile';
 import Home from '../components/home/home';
 
 export default props => (
@@ -8,6 +9,7 @@ export default props => (
         <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/user" component={User} />
+            <Route path="/profile" component={Profile} />
             <Redirect from="*" to="/" />
         </Switch>
     </div>
