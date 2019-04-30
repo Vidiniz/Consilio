@@ -1,6 +1,6 @@
-import { reset as resetForm, initialize } from 'redux-form';
+import { initialize } from 'redux-form';
 import { showTabs, selectTab } from '../actions/tabAction';
-import { getAll } from '../requests/profileRequests';
+import { getAll, saveProfile, updateProfile, removeProfile } from '../requests/profileRequests';
 
 const INITIAL_VALUES = {};
 
@@ -8,16 +8,16 @@ export const getList = () => {
     return getAll()
 }
 
-export function create(values) {
-    return submit(values, 'post')
+export const create = values => {
+    return saveProfile(values, init)
 }
 
-export function update(values) {
-    return submit(values, 'put')
+export const update = (values, id) => {
+    return updateProfile(values, id, init)
 }
 
-export function remove(values) {
-    return submit(values, 'delete')
+export const remove = id => {
+    return removeProfile(id, init)
 }
 
 export const showUpdate = profile => {
@@ -36,7 +36,7 @@ export const showDelete = profile => {
     ]
 }
 
-export function init() {
+export const init = () => {
     return [
         showTabs('tabList', 'tabCreate'),
         selectTab('tabList'),

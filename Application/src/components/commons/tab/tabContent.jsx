@@ -3,12 +3,8 @@ import { connect } from 'react-redux';
 
 class TabContent extends Component {
     render() {
-        let selected = false;
-        let visible = false;
-        if (this.props.tab !== undefined) {
-            selected = this.props.tab.selected === this.props.id;
-            visible = this.props.tab.visible[this.props.id];        
-        }
+        const selected = this.props.tab.selected === this.props.id;
+        const visible = this.props.tab.visible[this.props.id];        
         if(visible) {
             return(            
                 <div id={this.props.id} 

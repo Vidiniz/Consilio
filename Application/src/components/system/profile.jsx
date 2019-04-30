@@ -9,8 +9,13 @@ import TabsHeader from '../commons/tab/tabsHeader';
 import TabHeader from '../commons/tab/tabHeader';
 import TabsContent from '../commons/tab/tabsContent';
 import TabContent from '../commons/tab/tabContent';
+import { init, create, update, remove } from '../../actions/profileAction';
 
 class Profile extends Component {
+    componentWillMount() {
+        this.props.init();
+    }
+
     render() {
         return (
             <div>
@@ -26,8 +31,17 @@ class Profile extends Component {
                             </TabsHeader>
                             <TabsContent>
                                 <TabContent id="tabList">
-                                    teste
-                                 </TabContent>
+                                    Lista
+                                </TabContent>
+                                <TabContent id="tabCreate">
+                                    Inserir
+                                </TabContent>
+                                <TabContent id="tabUpdate">
+                                    Altear
+                                </TabContent>
+                                <TabContent id="tabDelete">
+                                    Excluir
+                                </TabContent>
                             </TabsContent>
                         </Tabs>
                     </Box>
@@ -37,4 +51,5 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+const mapDispatchToProps = dispatch => bindActionCreators({ init, create, update, remove }, dispatch)
+export default connect(null, mapDispatchToProps)(Profile)
