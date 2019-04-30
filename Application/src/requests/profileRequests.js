@@ -4,9 +4,8 @@ import { toastr } from 'react-redux-toastr';
 const BASE_URL = 'http://localhost:5000/api/systemprofile';
 
 export const getAll = () => {
-    let request;
-    
-    try {
+    let request;    
+    try {            
        request  = axios.get(`${BASE_URL}/obtertodos`);
        return {
         type: 'PROFILE_FETCHED',

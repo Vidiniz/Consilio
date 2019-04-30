@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ContentHeader from '../commons/container/contentHeader';
-import ContentBody from '../commons/container/contentBody';
-import Box from '../commons/container/box';
-import Tabs from '../commons/tab/tabs';
-import TabsHeader from '../commons/tab/tabsHeader';
-import TabHeader from '../commons/tab/tabHeader';
-import TabsContent from '../commons/tab/tabsContent';
-import TabContent from '../commons/tab/tabContent';
-import { init, create, update, remove } from '../../actions/profileAction';
+import ContentHeader from '../../commons/container/contentHeader';
+import ContentBody from '../../commons/container/contentBody';
+import Box from '../../commons/container/box';
+import Tabs from '../../commons/tab/tabs';
+import TabsHeader from '../../commons/tab/tabsHeader';
+import TabHeader from '../../commons/tab/tabHeader';
+import TabsContent from '../../commons/tab/tabsContent';
+import TabContent from '../../commons/tab/tabContent';
+import { init, create, update, remove } from '../../../actions/profileAction';
+import ProfileList from './profileList';
 
 class Profile extends Component {
     componentWillMount() {
@@ -31,7 +32,7 @@ class Profile extends Component {
                             </TabsHeader>
                             <TabsContent>
                                 <TabContent id="tabList">
-                                    Lista
+                                    <ProfileList />
                                 </TabContent>
                                 <TabContent id="tabCreate">
                                     Inserir

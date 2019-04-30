@@ -16,7 +16,7 @@ class Authentication extends Component {
     render() {
         const { user, validToken } = this.props.auth
         if (user && validToken) {
-            axios.defaults.headers.common['authorization'] = user.token
+            axios.defaults.headers.common['authorization'] = `Bearer ${user.token}` 
             return <App />
         }
         else if(!user && !validToken) {
