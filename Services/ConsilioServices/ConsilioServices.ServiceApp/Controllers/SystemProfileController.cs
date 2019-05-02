@@ -45,7 +45,7 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
         [Route("ObterPorId")]
         public IActionResult GetById(int id)
         {

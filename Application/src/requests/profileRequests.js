@@ -17,6 +17,20 @@ export const getAll = () => {
     }    
 }
 
+export const getProfileById = id => {
+    let request;
+    try{
+        request = axios.get(`${BASE_URL}/obterporid?id=${id}`);
+        return {
+            type: 'PROFILE_FETCHED',
+            payload: request.data
+        }
+    }
+    catch(e) {
+        toastr.error(e.name,e.message);
+    }
+}
+
 export const saveProfile = (value, parameter) => {
     return dispatch => {
         axios.post(`${BASE_URL}/salvarperfil`,value)

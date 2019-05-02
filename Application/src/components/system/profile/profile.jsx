@@ -37,10 +37,11 @@ class Profile extends Component {
                                 </TabContent>
                                 <TabContent id="tabCreate">
                                     <ProfileForm onSubmit={this.props.create} 
-                                        submitLabel="Incluir" submitClass="btn btn-primary"/>
+                                        submitLabel="Salvar" submitClass="btn btn-primary"/>
                                 </TabContent>
                                 <TabContent id="tabUpdate">
-                                    Altear
+                                    <ProfileForm onSubmit={this.props.update} 
+                                            submitLabel="Salvar" submitClass="btn btn-primary"/>
                                 </TabContent>
                                 <TabContent id="tabDelete">
                                     Excluir
