@@ -1,7 +1,6 @@
-/* * {
-    font-family: sans-serif;
-     background-color: aqua; 
-} */
+button {
+    margin-left: 5px;
+}
 
 .main-footer {
     position: fixed;
@@ -15,7 +14,6 @@
 }
 
 .login-page {
-    /*background-image : linear-gradient(#136ca0, #fff)!important;*/
     background: #54a8d8 !important;
 }
 

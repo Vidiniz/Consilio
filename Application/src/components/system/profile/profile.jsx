@@ -11,6 +11,7 @@ import TabsContent from '../../commons/tab/tabsContent';
 import TabContent from '../../commons/tab/tabContent';
 import { init, create, update, remove } from '../../../actions/profileAction';
 import ProfileList from './profileList';
+import ProfileForm from './profileForm';
 
 class Profile extends Component {
     componentWillMount() {
@@ -35,7 +36,8 @@ class Profile extends Component {
                                     <ProfileList />
                                 </TabContent>
                                 <TabContent id="tabCreate">
-                                    Inserir
+                                    <ProfileForm onSubmit={this.props.create} 
+                                        submitLabel="Incluir" submitClass="btn btn-primary"/>
                                 </TabContent>
                                 <TabContent id="tabUpdate">
                                     Altear
