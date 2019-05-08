@@ -122,7 +122,7 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         [Route("AlterarUsuario")]
         public IActionResult PutUser(int id, [FromBody] SystemUserViewModel value)
         {
@@ -152,7 +152,7 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [Route("RemoverUsuario")]
         public IActionResult DeleteUser(int id)
         {

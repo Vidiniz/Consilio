@@ -12,5 +12,7 @@ namespace ConsilioServices.Domain.Interfaces.Repositories
         SystemUser GetExactEmail(string email);
 
         SystemUser Login(string user, string password);
+
+        IEnumerable<SystemUser> GetUsersByProfile(int idProfile);
     }
 }

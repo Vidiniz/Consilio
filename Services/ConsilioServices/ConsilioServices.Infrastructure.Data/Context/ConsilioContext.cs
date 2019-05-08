@@ -2,6 +2,8 @@
 using ConsilioServices.Infrastructure.Data.Map;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using System.IO;
 using System.Linq;
 
@@ -9,6 +11,9 @@ namespace ConsilioServices.Infrastructure.Data.Context
 {
     public class ConsilioContext : DbContext
     {
+        public static readonly LoggerFactory loggerFactory
+            = new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
+
         public DbSet<SystemUser> SystemUsers { get; set; }
         public DbSet<SystemProfile> SystemProfiles { get; set; }
         public DbSet<MenuAccess> MenuAccesses { get; set; }
@@ -21,7 +26,9 @@ namespace ConsilioServices.Infrastructure.Data.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DBConsilio"));            
+            optionsBuilder
+                .UseLoggerFactory(loggerFactory)
+                .UseSqlServer(config.GetConnectionString("DBConsilio"));            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

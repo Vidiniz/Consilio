@@ -15,6 +15,6 @@ namespace ConsilioServices.Application.Interfaces
 
         void Update(SystemProfileViewModel systemProfileViewModel);
 
-        void Remove(int id);
+        void Remove(int id);        
     }
 }

@@ -55,5 +55,13 @@ namespace ConsilioServices.Infrastructure.Data.Repository
                         SystemProfileId = dataUser.SystemProfileId
                     }).FirstOrDefault();            
         }
+
+        public IEnumerable<SystemUser> GetUsersByProfile(int IdProfile)
+        {
+            return (from user in _dataBase.Set<SystemUser>()
+                    join profile in _dataBase.Set<SystemProfile>() on user.SystemProfileId equals profile.Id
+                    where profile.Id.Equals(IdProfile)
+                    select user).ToList();
+        }
     }
 }

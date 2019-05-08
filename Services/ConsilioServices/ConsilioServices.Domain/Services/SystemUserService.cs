@@ -29,9 +29,16 @@ namespace ConsilioServices.Domain.Services
             return _systemUserRepository.GetExactEmail(email);
         }
 
+        public IEnumerable<SystemUser> GetUsersByProfile(int idProfile)
+        {
+            return _systemUserRepository.GetUsersByProfile(idProfile);
+        }
+
         public SystemUser Login(string user, string password)
         {
             return _systemUserRepository.Login(user, password);
         }
+
+        
     }
 }

@@ -18,7 +18,7 @@ class ProfileForm extends Component {
                             placeholder="Nome do Perfil" type="text" maxLength="80" />
                     </div>
                     <div className="row">
-                        '   <Field name="hasadmin" component={ContainerCheckbox} readOnly={readOnly}
+                        <Field name="hasAdmin" component={ContainerCheckbox} readOnly={readOnly}
                             label="Usuário Administrador" cols="col-xs-12 col-sm-12 col-md-6 col-lg-6"
                             type="checkbox" />
                     </div>
@@ -39,6 +39,5 @@ class ProfileForm extends Component {
 }
 
 ProfileForm = reduxForm({ form: 'profileForm', destroyOnUnmount: false })(ProfileForm)
-const mapStateToProps = state => ({ profile: state.profile })
 const mapDispatchToProps = dispatch => bindActionCreators({ init }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm)
+export default connect(null, mapDispatchToProps)(ProfileForm)

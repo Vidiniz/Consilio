@@ -1,6 +1,6 @@
 import { initialize } from 'redux-form';
 import { showTabs, selectTab } from '../actions/tabAction';
-import { getAll, getProfileById, saveProfile, updateProfile, removeProfile } from '../requests/profileRequests';
+import { getAll, getProfileById, saveProfile, updateProfile, removeProfile, getProfileByIdAsync } from '../requests/profileRequests';
 
 const INITIAL_VALUES = {};
 
@@ -13,30 +13,34 @@ export const getById = id =>{
 }
 
 export const create = values => {
-    return saveProfile(values, init)
+    return saveProfile(values, init())
 }
 
-export const update = (values, id) => {
-    return updateProfile(values, id, init)
+export const update = (values) => {
+    return updateProfile(values, init())
 }
 
-export const remove = id => {
-    return removeProfile(id, init)
+export const remove = profile => {
+    return removeProfile(profile.id, init())
 }
 
-export const showUpdate = profile => {        
+export const showUpdate = profile => {    
+    let result = getProfileByIdAsync(profile.id)
+    .then(response => response.data);    
     return [ 
         showTabs('tabUpdate'),
         selectTab('tabUpdate'),
-        initialize('profileForm', getById(profile.id))
+        initialize('profileForm', result)
     ]
 }
 
 export const showDelete = profile => {
+    let result = getProfileByIdAsync(profile.id)
+    .then(response => response.data);    
     return [ 
         showTabs('tabDelete'),
         selectTab('tabDelete'),
-        initialize('profileForm', getById(profile.id))
+        initialize('profileForm',result)
     ]
 }
 

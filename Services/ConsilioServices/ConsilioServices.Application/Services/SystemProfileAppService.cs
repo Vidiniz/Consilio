@@ -2,8 +2,10 @@
 using ConsilioServices.Application.Interfaces;
 using ConsilioServices.Application.ViewModel.SystemTools;
 using ConsilioServices.Domain.Entities;
+using ConsilioServices.Domain.Exceptions;
 using ConsilioServices.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsilioServices.Application.Services
 {
@@ -11,11 +13,15 @@ namespace ConsilioServices.Application.Services
     {
         private readonly ISystemProfileRepository _systemProfileRepository;
 
+        private readonly ISystemUserRepository _systemUserRepository;
+
         private readonly IMapper _mapper;
 
-        public SystemProfileAppService(ISystemProfileRepository systemProfileRepository, IMapper mapper)
+        public SystemProfileAppService(ISystemProfileRepository systemProfileRepository, ISystemUserRepository systemUserRepository, IMapper mapper)
         {
             _systemProfileRepository = systemProfileRepository;
+
+            _systemUserRepository = systemUserRepository;
 
             _mapper = mapper;
         }
@@ -37,9 +43,14 @@ namespace ConsilioServices.Application.Services
 
         public void Remove(int id)
         {
-            var objResult = _systemProfileRepository.GetById(id);
+            var profile = _systemProfileRepository.GetById(id);
 
-            _systemProfileRepository.Remove(objResult);
+            var users = _systemUserRepository.GetUsersByProfile(profile.Id).ToList();
+
+            if (users.Count > 0)
+                throw new BusisnessException("Não é possível remover um perfil associado a um Usuário");
+
+            _systemProfileRepository.Remove(profile);
         }
 
         public void Save(SystemProfileViewModel systemProfileViewModel)

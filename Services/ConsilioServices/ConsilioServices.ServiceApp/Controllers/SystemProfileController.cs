@@ -121,16 +121,16 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         [Route("AlterarPerfil")]
         public IActionResult PutProfile(int id, [FromBody] SystemProfileViewModel value)
         {
             try
             {
-                var result = _systemProfileAppService.GetById(id);
+                //var result = _systemProfileAppService.GetById(id);
 
-                if (result == null)
-                    return NotFound();
+                //if (result == null)
+                //    return NotFound();
 
                 if (ModelState.IsValid)
                 {
@@ -151,7 +151,7 @@ namespace ConsilioServices.ServiceApp.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [Route("RemoverPerfil")]
         public IActionResult DeleteProfile(int id)
         {
