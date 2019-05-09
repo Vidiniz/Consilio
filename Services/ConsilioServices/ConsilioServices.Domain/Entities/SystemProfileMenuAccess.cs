@@ -2,8 +2,6 @@
 {
     public class SystemProfileMenuAccess
     {
-        public int Id { get; set; }
-
         public int SystemProfileId { get; set; }
 
         public SystemProfile SystemProfile { get; set; }

@@ -4,14 +4,16 @@ using ConsilioServices.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsilioServices.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ConsilioContext))]
-    partial class ConsilioContextModelSnapshot : ModelSnapshot
+    [Migration("20190508195747_correcao_many-to-many-profile-access")]
+    partial class correcao_manytomanyprofileaccess
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,11 +32,7 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int>("TopicAccessId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TopicAccessId");
 
                     b.ToTable("MenuAccesses");
                 });
@@ -109,27 +107,6 @@ namespace ConsilioServices.Infrastructure.Data.Migrations
                     b.HasIndex("SystemProfileId");
 
                     b.ToTable("SystemUsers");
-                });
-
-            modelBuilder.Entity("ConsilioServices.Domain.Entities.TopicAccess", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TopicAccesses");
-                });
-
-            modelBuilder.Entity("ConsilioServices.Domain.Entities.MenuAccess", b =>
-                {
-                    b.HasOne("ConsilioServices.Domain.Entities.TopicAccess", "TopicAccess")
-                        .WithMany("TopicAccesses")
-                        .HasForeignKey("TopicAccessId")
-                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ConsilioServices.Domain.Entities.SystemProfileMenuAccess", b =>

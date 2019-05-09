@@ -11,7 +11,7 @@ namespace ConsilioServices.Domain.Services
 
         public SystemProfileService(ISystemProfileRepository systemProfileRepository) : base(systemProfileRepository)
         {
-            this._systemProfileRepository = systemProfileRepository;
+            _systemProfileRepository = systemProfileRepository;
         }
 
         public IEnumerable<SystemProfile> GetByName(string name)

@@ -3,6 +3,6 @@
 namespace ConsilioServices.Domain.Interfaces.Services
 {
     public interface IMenuAccessService: IServiceBase<MenuAccess>
-    {
+    {        
     }
 }

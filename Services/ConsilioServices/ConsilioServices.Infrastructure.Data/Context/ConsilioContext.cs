@@ -18,6 +18,7 @@ namespace ConsilioServices.Infrastructure.Data.Context
         public DbSet<SystemProfile> SystemProfiles { get; set; }
         public DbSet<MenuAccess> MenuAccesses { get; set; }
         public DbSet<SystemProfileMenuAccess> SystemProfileMenuAccesses { get; set; }
+        public DbSet<TopicAccess> TopicAccesses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

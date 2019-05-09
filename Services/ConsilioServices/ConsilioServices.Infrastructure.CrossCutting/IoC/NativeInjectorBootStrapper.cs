@@ -26,13 +26,18 @@ namespace ConsilioServices.Infrastructure.CrossCutting.IoC
             services.AddScoped<ISystemProfileRepository, SystemProfileRepository>();
             services.AddScoped<IMenuAccessRepository, MenuAccessRepository>();
             services.AddScoped<ISystemProfileMenuAccessRepository, SystemProfileMenuAccessRepository>();
+            services.AddScoped<ITopicAccessRepository, TopicAccessRepository>();
+
             services.AddScoped<ISystemUserService, SystemUserService>();
             services.AddScoped<ISystemProfileService, SystemProfileService>();
             services.AddScoped<IMenuAccessService, MenuAccessService>();
             services.AddScoped<ISystemProfileMenuAccessService, SystemProfileMenuAccessService>();
+            services.AddScoped<ITopicAccessService, TopicAccessService>();
+
             services.AddScoped<ISystemProfileAppService, SystemProfileAppService>();
             services.AddScoped<ISystemUserAppService, SystemUserAppService>();
             services.AddScoped<IAuthenticationAppService, AuthenticationAppService>();
+            services.AddScoped<IMenuAccessAppService, MenuAccessAppService>();
 
         }
     }

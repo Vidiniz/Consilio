@@ -1,6 +1,7 @@
 import { initialize } from 'redux-form';
 import { showTabs, selectTab } from '../actions/tabAction';
 import { getAll, getProfileById, saveProfile, updateProfile, removeProfile, getProfileByIdAsync } from '../requests/profileRequests';
+import { toastr } from 'react-redux-toastr';
 
 const INITIAL_VALUES = {};
 
@@ -24,9 +25,14 @@ export const remove = profile => {
     return removeProfile(profile.id, init())
 }
 
+// export const getMenuAccess = () => {
+
+// }
+
 export const showUpdate = profile => {    
     let result = getProfileByIdAsync(profile.id)
-    .then(response => response.data);    
+    .then(response => response.data)  
+    .catch(error => toastr.error('Error', error));
     return [ 
         showTabs('tabUpdate'),
         selectTab('tabUpdate'),
@@ -36,7 +42,8 @@ export const showUpdate = profile => {
 
 export const showDelete = profile => {
     let result = getProfileByIdAsync(profile.id)
-    .then(response => response.data);    
+    .then(response => response.data)    
+    .catch(error => toastr.error('Error', error));
     return [ 
         showTabs('tabDelete'),
         selectTab('tabDelete'),

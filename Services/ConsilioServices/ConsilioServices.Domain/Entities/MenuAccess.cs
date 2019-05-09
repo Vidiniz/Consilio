@@ -8,6 +8,10 @@ namespace ConsilioServices.Domain.Entities
 
         public string Name { get; set; }
 
+        public int TopicAccessId { get; set; }
+
+        public virtual TopicAccess TopicAccess { get; set; }
+
         public IEnumerable<SystemProfileMenuAccess> SystemProfileMenuAccesses { get; set; }
     }
 }

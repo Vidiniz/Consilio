@@ -8,12 +8,16 @@ namespace ConsilioServices.Infrastructure.Data.Map
     {
         public void Configure(EntityTypeBuilder<MenuAccess> builder)
         {
-            builder.HasKey(p => p.Id);
+            builder.HasKey(ma => ma.Id);
 
-            builder.Property(p => p.Name)
+            builder.Property(ma => ma.Name)
                 .IsRequired()
                 .HasColumnType("varchar(100)")
-                .HasMaxLength(100);                  
+                .HasMaxLength(100);
+
+            builder.HasOne(ma => ma.TopicAccess)
+                .WithMany(ta => ta.MenuAccesses)
+                .HasForeignKey(ma => ma.TopicAccessId);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ConsilioServices.Infrastructure.Data.Map
     {
         public void Configure(EntityTypeBuilder<SystemProfileMenuAccess> builder)
         {
-            builder.HasKey(pma => pma.Id);
+            builder.HasKey(pma => new { pma.SystemProfileId, pma.MenuAccessId });
 
             builder.HasOne(pma => pma.MenuAccess)
                 .WithMany(ma => ma.SystemProfileMenuAccesses)

@@ -1,11 +1,12 @@
-﻿namespace ConsilioServices.Application.ViewModel.SystemTools
+﻿using Newtonsoft.Json;
+
+namespace ConsilioServices.Application.ViewModel.SystemTools
 {
     public class SystemProfileMenuAccessViewModel
     {
-        public int Id { get; set; }
-
         public int SystemProfileId { get; set; }
 
+        [JsonIgnore]
         public SystemProfileViewModel SystemProfile { get; set; }
 
         public int MenuAccessId { get; set; }

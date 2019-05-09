@@ -4,14 +4,16 @@ using ConsilioServices.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ConsilioServices.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ConsilioContext))]
-    partial class ConsilioContextModelSnapshot : ModelSnapshot
+    [Migration("20190509142726_add-topics")]
+    partial class addtopics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

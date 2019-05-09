@@ -5,6 +5,7 @@ import { reduxForm, Field } from 'redux-form';
 import { init } from '../../../actions/profileAction';
 import ContainerInput from '../../commons/containerInput';
 import ContainerCheckbox from '../../commons/containerCheckbox';
+import TreeViewCheckBox from '../../commons/checkboxTree';
 
 class ProfileForm extends Component {
     render() {
@@ -21,6 +22,9 @@ class ProfileForm extends Component {
                         <Field name="hasAdmin" component={ContainerCheckbox} readOnly={readOnly}
                             label="Usuário Administrador" cols="col-xs-12 col-sm-12 col-md-6 col-lg-6"
                             type="checkbox" />
+                    </div>
+                    <div className="row">
+                        <TreeViewCheckBox />
                     </div>
                 </div>
                 <div className="box-footer">
